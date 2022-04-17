@@ -5,6 +5,8 @@ const Intern = require('./lib/Intern');
 const fs = require('fs');
 const path = require('path');
 const { TestResult } = require('@jest/types');
+const DIST_DIR = path.resolve(__dirname, 'dist');
+const distPath = path.join(DIST_DIR, 'team.html');
 
 const myTeam = [];
 
@@ -220,6 +222,19 @@ const queryIntern = () => {
     })
 };
 
+const completeTeam = () => {
+    console.log(`
+    ================
+    Complete My Team
+    ================
+    `);
 
+    if (!fs.existsSync(DIST_DIR)) {
+        fs.mkdirSync(DIST_DIR);
+    } else {
+        fs.writeFileSync(distPath, createSite(myTeam), 'utf-8');
+        console.log('Team roster created successfully!');
+    }
+};
 
 queryManager();
