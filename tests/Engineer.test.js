@@ -2,10 +2,10 @@ const Engineer = require('../lib/Engineer');
 const { test, expect } = require('@jest/globals');
 
 test('set github account name', () => {
-    const git = 'GitHub';
-    const engineer = new Engineer('Joe', 1, 'abc@123.com', git);
+    const gitHub = 'GitHub';
+    const engineer = new Engineer('Joe', 1, 'abc@123.com', gitHub);
 
-    expect(engineer.github).toBe(git);
+    expect(engineer.gitHub).toBe(gitHub);
 });
 
 test('retrieve role of "Engineer"', () => {
