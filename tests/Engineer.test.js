@@ -10,7 +10,7 @@ test('set github account name', () => {
 
 test('retrieve role of "Engineer"', () => {
     const role = 'Engineer';
-    const enginner = new Engineer('Joe', 1, 'abc@123.com', 'GitHub');
+    const engineer = new Engineer('Joe', 1, 'abc@123.com', 'GitHub');
 
     expect(engineer.getRole()).toBe(role);
 });
