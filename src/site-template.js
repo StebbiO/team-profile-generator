@@ -1,4 +1,4 @@
-const createTeam = (team) => {
+const createSite = (team) => {
     console.log(team);    
     
     const html = [];
@@ -14,7 +14,7 @@ const createTeam = (team) => {
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${manager.id}</li>
-                <li class="list-group-item">Email: <span id="email"><a href="mailto:${manager.email}>${manager.email}</a></span></li>
+                <li class="list-group-item">Email: <span id="email"><a href="mailto:${manager.email}">${manager.email}</a></span></li>
                 <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
             </ul>
         </div>
@@ -33,7 +33,7 @@ const createTeam = (team) => {
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${engineer.id}</li>
-                <li class="list-group-item">Email: <span id="email"><a href="mailto:${engineer.email}>${engineer.email}</a></span></li>
+                <li class="list-group-item">Email: <span id="email"><a href="mailto:${engineer.email}">${engineer.email}</a></span></li>
                 <li class="list-group-item">GitHub: <a target="_blank" href="https://github.com/${engineer.gitHub}">${engineer.gitHub}</a></li>
             </ul>
         </div>
@@ -52,7 +52,7 @@ const createTeam = (team) => {
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">ID: ${intern.id}</li>
-                <li class="list-group-item">Email: <span id="email"><a href="mailto:${intern.email}>${intern.email}</a></span></li>
+                <li class="list-group-item">Email: <span id="email"><a href="mailto:${intern.email}">${intern.email}</a></span></li>
                 <li class="list-group-item"> School: ${intern.school}</li>
             </ul>
         </div>
@@ -75,3 +75,27 @@ const createTeam = (team) => {
     return html.join('');
 }
 
+module.exports = team => {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <title>My Team</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        </head>
+        <body>
+            <header>
+                <h1>My Team</h1>
+            </header>
+
+            <main>
+                ${createSite(team)}
+            <main>
+        </body>
+    </html>
+    `;
+}

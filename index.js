@@ -5,6 +5,7 @@ const Intern = require('./lib/Intern');
 const fs = require('fs');
 const path = require('path');
 const { TestResult } = require('@jest/types');
+const siteTemplate = require('./src/site-template');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
 
@@ -232,7 +233,7 @@ const completeTeam = () => {
     if (!fs.existsSync(DIST_DIR)) {
         fs.mkdirSync(DIST_DIR);
     } else {
-        fs.writeFileSync(distPath, createSite(myTeam), 'utf-8');
+        fs.writeFileSync(distPath, siteTemplate(myTeam), 'utf-8');
         console.log('Team roster created successfully!');
     }
 };
