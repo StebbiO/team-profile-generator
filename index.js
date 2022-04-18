@@ -6,9 +6,11 @@ const fs = require('fs');
 const path = require('path');
 const { TestResult } = require('@jest/types');
 const siteTemplate = require('./src/site-template');
+// path to dist folder
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
 
+// empty array that will contain team members
 const myTeam = [];
 
 const queryManager = () => {
@@ -64,6 +66,7 @@ const queryManager = () => {
     ])
     .then((answers) => {
         console.log(answers);
+        // creates new manager object and pushes it into the array, calls menu function
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         myTeam.push(manager);
         querySelect();
@@ -152,6 +155,7 @@ const queryEngineer = () => {
     ])
     .then((answers) => {
         console.log(answers);
+        // creates new engineer object and pushes it into the array, calls menu function
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.gitHub);
         myTeam.push(engineer);
         querySelect();
@@ -217,6 +221,7 @@ const queryIntern = () => {
     ])
     .then((answers) => {
         console.log(answers);
+        // creates new intern object and pushes it into the array, calls menu function
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
         myTeam.push(intern);
         querySelect();
@@ -230,9 +235,11 @@ const completeTeam = () => {
     ================
     `);
 
+    // if there is no directory named dist, creates one
     if (!fs.existsSync(DIST_DIR)) {
         fs.mkdirSync(DIST_DIR);
     } else {
+        // passes team into site-template.js and creates an html file in the dist folder
         fs.writeFileSync(distPath, siteTemplate(myTeam), 'utf-8');
         console.log('Team roster created successfully!');
     }

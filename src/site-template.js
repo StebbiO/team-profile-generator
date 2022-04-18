@@ -1,6 +1,8 @@
+// helper function to create html file using data provided from cl
 const createSite = (team) => {
     console.log(team);    
     
+    // empty array that will hold the html templates and template literals
     const html = [];
 
     const createManager = manager => {
@@ -8,7 +10,7 @@ const createSite = (team) => {
 
         let managerHTML = `
         <div class="card" style="width: 18rem;">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
                 ${manager.name} <br/>
                 <i class="fas fa-mug-hot"></i>Manager
             </div>
@@ -27,7 +29,7 @@ const createSite = (team) => {
 
         let engineerHTML = `
         <div class="card" style="width: 18rem;">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
                 ${engineer.name} <br/>
                 <i class="fas fa-glasses"></i>Engineer
             </div>
@@ -46,7 +48,7 @@ const createSite = (team) => {
 
         let internHTML = `
         <div class="card" style="width: 18rem;">
-            <div class="card-header">
+            <div class="card-header bg-primary text-white">
                 ${intern.name} <br/>
                 <i class="fas fa-user-graduate"></i>Intern
             </div>
@@ -60,6 +62,7 @@ const createSite = (team) => {
         html.push(internHTML);
     }
 
+    // for loop goes through the answers provided and assigns them to a function based on their role
     for (let i = 0; i < team.length; i++) {
         if (team[i].getRole() === 'Manager') {
             createManager(team[i]);
@@ -88,13 +91,21 @@ module.exports = team => {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         </head>
         <body>
-            <header>
-                <h1>My Team</h1>
-            </header>
+            <div class="container">
+                <div class="row">
+                    <header class="col-12 mb-3 team-heading jumbotron bg-info text-white">
+                        <h1 class="text-center">My Team</h1>
+                    </header>
+                </div>
 
+            <main class="container">
+                <div class="row">
+                    <div class="col-12 team-area d-flex justify-content-center">
+                        ${createSite(team)}
+                    </div>
+                <div>
             <main>
-                ${createSite(team)}
-            <main>
+            </div>
         </body>
     </html>
     `;
